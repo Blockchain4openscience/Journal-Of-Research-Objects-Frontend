@@ -87,9 +87,9 @@ export const navItems: NavData[] = [
         icon: 'icon-puzzle'
       },
       {
-        name: 'Collapses',
-        url: '/base/collapses',
-        icon: 'icon-puzzle'
+        name: 'GitHub',
+        url: '/base/github',
+        icon: 'icon-cursor'
       },
       {
         name: 'Forms',
