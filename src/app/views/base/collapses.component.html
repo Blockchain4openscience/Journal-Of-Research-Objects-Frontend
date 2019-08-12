@@ -1,27 +1,34 @@
 <div class="animated fadeIn">
-    
-  <div class="card">
-    <div class="card-header">   
-        <div class="d-flex">
-          <div class="mr-auto p-2"><h2>Repository Name</h2></div>
-          <div class="p-2"><button type="button" class="btn btn-pill btn-primary" disabled>CONTRIBUTOR</button></div>
-          <div class="p-2"><button type="button" class="btn btn-pill btn-primary pull-right" disabled>CODE</button></div>
-        </div>
-    </div>
+  <a [attr.href]="githubURL" mat-flat-button *ngIf="!githubRepos?.length > 0">
+    <span> Connect to github</span>
+  </a>
+  <!-- <mat-progress-bar mode="query" *ngIf="!githubRepos?.length > 0 && searching"></mat-progress-bar> -->
 
-    <div class="card-body"
-         (collapsed)="collapsed($event)"
-         (expanded)="expanded($event)"
-         [collapse]="isCollapsed">
-      <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-        consequat.
-      </p>
-    </div>
-    <div class="card-footer">
-      <button type="button" class="btn btn-primary"
-              (click)="isCollapsed = !isCollapsed">Collapse
-      </button>
+  <div class="github-content" *ngIf="githubRepos">
+    <div class="card" *ngFor="let repo of githubRepos">
+      <div class="card-header">
+        <div class="d-flex">
+          <div class="mr-auto p-2">
+            <h2>{{ repo.name }}</h2>
+          </div>
+          <div class="p-2"><button type="button" class="btn btn-pill btn-primary" disabled>CONTRIBUTOR</button></div>
+          <div class="p-2"><button type="button" class="btn btn-pill btn-primary pull-right" disabled>CODE</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsed">
+        <p>
+          {{ repo.description }}
+        </p>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"> Collapse </button>
+
+        <button type="button" class="btn btn-primary" (click)="claim(repo)" [disabled]="repo.claimed">
+          {{repo.claimed ? "Claimed" : "Claim" }} </button>
+
+      </div>
     </div>
   </div>
 </div>

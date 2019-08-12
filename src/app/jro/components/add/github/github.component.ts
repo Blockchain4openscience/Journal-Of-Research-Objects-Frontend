@@ -1,16 +1,15 @@
-import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { StorageService } from '../../jro/services/storage/storage.service';
-import { GithubService } from '../../jro/services/github/github.service';
-import { RoService } from '../../jro/services/ro/ro.service';
-import { environment } from '../../../environments/environment';
+import { StorageService } from '../../../services/storage/storage.service';
+import { GithubService } from '../../../services/github/github.service';
+import { RoService } from '../../../services/ro/ro.service';
+import { environment } from '../../../../../environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-
 @Component({
-  templateUrl: 'collapses.component.html'
+  templateUrl: './github.component.html',
 })
-export class CollapsesComponent implements OnInit {
+export class GithubComponent implements OnInit {
 
   public githubRepos: Array<any>;
   public user: Object;
@@ -115,14 +114,6 @@ export class CollapsesComponent implements OnInit {
     // })
     //   .catch(error => {console.log("error read if file exists")});      
   }
-
-
-
-
-
-
-
-
 
   isCollapsed: boolean = false;
 

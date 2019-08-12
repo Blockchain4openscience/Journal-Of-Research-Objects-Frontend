@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { StorageService } from '../../jro/services/storage/storage.service';
-import { GithubService } from '../../jro/services/github/github.service';
-import { RoService } from '../../jro/services/ro/ro.service';
+import { StorageService } from '../../services/storage/storage.service';
+import { GithubService } from '../../services/github/github.service';
+import { RoService } from '../../services/ro/ro.service';
 
 @Component({
   templateUrl: 'forms.component.html'

@@ -12,7 +12,7 @@ import { RegisterComponent } from './views/register/register.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -81,14 +81,27 @@ export const routes: Routes = [
       {
         path: 'widgets',
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
-      }
+      },
+      {
+        path: 'formme',
+        loadChildren: () => import('./jro/components/forms/forms.module').then(m => m.FormsCustomModule)
+      },
+      {
+        path: 'add',
+        loadChildren: () => import('./jro/components/add/add.module').then(m => m.AddModule)
+      }, // Lazy load the components in AddModule when path is '/add'
+      {
+        path: 'enrich',
+        loadChildren: () => import('./jro/components/enrich/enrich.module').then(m => m.EnrichModule)
+      }, // Lazy load the components in EnrichModule when path is '/enrich'
+
     ]
   },
   { path: '**', component: P404Component }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

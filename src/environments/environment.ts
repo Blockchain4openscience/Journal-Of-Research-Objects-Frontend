@@ -4,5 +4,17 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  serviceUrl: 'http://localhost:5002',
+  redirectUrl: 'localhost:4200/login',
+  // Orcid information
+  orcidUrl: 'https://sandbox.orcid.org/oauth/token',
+  orcidClientId: 'APP-S49TQ9Y6E58U5928',
+  orcidClientSecret: 'a2df8b0c-6866-4132-a063-e3e4ab22a6a5',
+  orcidUserUrl: 'https://api.sandbox.orcid.org/v2.1/',
+  // Github information
+  githubClientId: 'Iv1.7ea5b696c1adf0bf',
+  githubClientSecret: '1d815cf181387e599d81451d52952c86159230a1',
+  githubApi: "https://github.com/login/oauth/access_token",
+  githubUserApi: "https://api.github.com/user",
 };

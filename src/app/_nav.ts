@@ -45,13 +45,22 @@ export const navItems: NavData[] = [
   },
   {
     name: 'Add from GitHub',
-    url: '/add/GitHub',
+    url: '/add/github',
     icon: 'icon-cloud-upload'
   },
   {
     name: 'Add from FigShare',
     url: '/add/FigShare',
     icon: 'icon-cloud-upload'
+  },
+  {
+    title: true,
+    name: 'Enrich'
+  },
+  {
+    name: 'Enrich ROs',
+    url: '/enrich/',
+    icon: 'icon-docs'
   },
   {
     title: true,
@@ -260,29 +269,33 @@ export const navItems: NavData[] = [
       }
     ]
   },
-  {
-    name: 'Disabled',
-    url: '/dashboard',
-    icon: 'icon-ban',
-    badge: {
-      variant: 'secondary',
-      text: 'NEW'
-    },
-    attributes: { disabled: true },
-  },
-  {
-    name: 'Download CoreUI',
-    url: 'http://coreui.io/angular/',
-    icon: 'icon-cloud-download',
-    class: 'mt-auto',
-    variant: 'success',
-    attributes: { target: '_blank', rel: 'noopener' }
-  },
-  {
-    name: 'Try CoreUI PRO',
-    url: 'http://coreui.io/pro/angular/',
-    icon: 'icon-layers',
-    variant: 'danger',
-    attributes: { target: '_blank', rel: 'noopener' }
-  }
+  // {
+  //   name: 'Disabled',
+  //   url: '/dashboard',
+  //   icon: 'icon-ban',
+  //   badge: {
+  //     variant: 'secondary',
+  //     text: 'NEW'
+  //   },
+  //   attributes: { disabled: true },
+  // },
+  // {
+  //   name: 'Download CoreUI',
+  //   url: 'http://coreui.io/angular/',
+  //   icon: 'icon-cloud-download',
+  //   class: 'mt-auto',
+  //   variant: 'success',
+  //   attributes: { target: '_blank', rel: 'noopener' }
+  // },
+  // {
+  //   name: 'Try CoreUI PRO',
+  //   url: 'http://coreui.io/pro/angular/',
+  //   icon: 'icon-layers',
+  //   variant: 'danger',
+  //   attributes: { target: '_blank', rel: 'noopener' }
+  // }
+  // {
+  //   "githuburl" : "https://github.com/ipfs/py-ipfs-http-client.git",
+  //   "reponame" : "Askdjakjds"
+  //   }
 ];
