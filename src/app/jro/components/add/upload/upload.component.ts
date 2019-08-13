@@ -18,6 +18,7 @@ export class UploadComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit(form: NgForm) {
+    console.log(form.value);
     console.log("Hello");
   }
 
