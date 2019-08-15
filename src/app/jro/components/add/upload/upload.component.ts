@@ -21,5 +21,14 @@ export class UploadComponent implements OnInit {
     console.log(form.value);
     console.log("Hello");
   }
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      console.log("File got")
+      // console.log(event.target.files);
+      const file = event.target.files[0];
+      console.log(file);
+      // this.form.get('avatar').setValue(file);
+    }
+  }
 
 }
