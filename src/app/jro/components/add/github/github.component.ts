@@ -45,7 +45,7 @@ export class GithubComponent implements OnInit {
       else {
         this.githubRepos = this.storageService.read<Array<any>>('githubRepos');
         this.searching = false;
-        console.log(this.githubRepos);
+        // console.log(this.githubRepos);
       }
     });
   }
@@ -115,14 +115,19 @@ export class GithubComponent implements OnInit {
     //   .catch(error => {console.log("error read if file exists")});      
   }
 
-  isCollapsed: boolean = false;
-
   collapsed(event: any): void {
-    // console.log(event);
+    // console.log("collapsed");
   }
 
   expanded(event: any): void {
-    // console.log(event);
+    // console.log("expanded");
   }
 
+  toggle(researchObject: any) {
+    // console.log("toggle");
+    researchObject["isCollapsed"] = !researchObject["isCollapsed"];
+    this.storageService.write('githubRepos', this.githubRepos);
+  }
+
+  
 }

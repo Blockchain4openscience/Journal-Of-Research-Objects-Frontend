@@ -37,8 +37,9 @@ export class GithubService {
 							.then(async (repos) => {
 								
 								for (let i = 0; i < repos.length; i++) {
-									console.log("In the for loop");
-									console.log(repos[i]);
+									// console.log("In the for loop");
+									// console.log(repos[i]);
+									repos[i]["isCollapsed"]=true;
 									//let exist = await this.roService.exists(repos[i]['html_url']);
 									//console.log(exist);
 									// if (!exist) {
