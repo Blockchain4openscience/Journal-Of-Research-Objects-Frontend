@@ -127,11 +127,11 @@ export class CollapsesComponent implements OnInit {
   isCollapsed: boolean = false;
 
   collapsed(event: any): void {
-    // console.log(event);
+    console.log(event);
   }
 
   expanded(event: any): void {
-    // console.log(event);
+    console.log(event);
   }
 
 }

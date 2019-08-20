@@ -17,13 +17,13 @@
         </div>
       </div>
 
-      <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsed">
+      <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="repo.isCollapsed" [isAnimated]="true">
         <p>
           {{ repo.description }}
         </p>
       </div>
       <div class="card-footer">
-        <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"> Collapse </button>
+        <button type="button" class="btn btn-primary" (click)="toggle(repo)"> {{repo.isCollapsed ? "Expand" : "Collapse"}} </button>
 
         <button type="button" class="btn btn-primary" (click)="claim(repo)" [disabled]="repo.claimed">
           {{repo.claimed ? "Claimed" : "Claim" }} </button>
