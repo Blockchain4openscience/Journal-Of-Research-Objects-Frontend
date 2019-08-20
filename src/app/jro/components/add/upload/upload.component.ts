@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 })
 export class UploadComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -27,6 +27,17 @@ export class UploadComponent implements OnInit {
       // console.log(event.target.files);
       const file = event.target.files[0];
       console.log(file);
+      let headers = new HttpHeaders({ 'Content-Disposition': 'attachment; filename=install.sh' });
+
+      this.http.post("http://172.17.62.244:8000/api/ipfs/addfile/", file, { headers: headers } ).toPromise()
+          .then(async (ipfsresult)=> {
+            console.log(ipfsresult);
+            // TODO: Put a redirect over here
+          }
+          )
+      // data= {
+      //   "$class": "org.jro.Add", roj
+      // }
       // this.form.get('avatar').setValue(file);
     }
   }
