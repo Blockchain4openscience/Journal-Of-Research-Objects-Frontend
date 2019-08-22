@@ -40,12 +40,10 @@ export class GithubComponent implements OnInit {
           this.searching = false;
           this.query = false;
         });
-        //this.githubService.auth(code, this.user['orcid']).then(result => {console.log(result)})
       }
       else {
         this.githubRepos = this.storageService.read<Array<any>>('githubRepos');
         this.searching = false;
-        // console.log(this.githubRepos);
       }
     });
   }
@@ -60,14 +58,15 @@ export class GithubComponent implements OnInit {
     //   uri: researchObject['uri'],
     //   creator: `resource:org.bforos.Researcher#${this.user['researcherId']}`  
     // }
-    let IPFShash = "23123132132123@@#";
+    let IPFShash = "SAMPLE-INVALID-IPFSHASH";
+
     // Add ipfs logic here
     let data = {
       "githuburl": researchObject['html_url'] + ".git",
       "reponame": researchObject['name']
     }
 
-    this.http.post("http://127.0.0.1:8000/api/ipfs/", data).toPromise()
+    this.http.post(environment.jroBackendUrl+"/api/ipfs/", data).toPromise()
       .then(async (ipfsresult) => {
         IPFShash = ipfsresult['hash'];
         console.log("INSIDE POST");
@@ -84,7 +83,7 @@ export class GithubComponent implements OnInit {
       .catch(error => {
         console.log(error);
         console.log("IPFS failed");
-        IPFShash = "23123132132123@@#"
+        IPFShash = "SAMPLE-INVALID-IPFSHASH"
       })
 
 
