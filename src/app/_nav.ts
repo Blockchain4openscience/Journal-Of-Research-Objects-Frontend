@@ -54,6 +54,11 @@ export const navItems: NavData[] = [
     icon: 'icon-cloud-upload'
   },
   {
+    name: "Upload RO's",
+    url: '/add/upload',
+    icon: 'icon-cloud-upload'
+  },
+  {
     title: true,
     name: 'Enrich'
   },
