@@ -12,33 +12,30 @@ import { NgForm } from '@angular/forms';
   templateUrl: './upload.component.html',
 })
 export class UploadComponent implements OnInit {
+  selectedFile: File = null;
+  public user: Object;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private router: Router,
+    private storageService: StorageService) { }
 
   ngOnInit() {
+    this.user = this.storageService.read<Object>('user');
   }
   onSubmit(form: NgForm) {
     console.log(form.value);
-    console.log("Hello");
+    let headers = new HttpHeaders({ 'Content-Disposition': 'attachment; filename=install.sh','oricid': this.user['researcherId']});
+      
+    this.http.post(environment.jroBackendUrl+"/api/ipfs/addfile/", this.selectedFile, { headers: headers } ).toPromise()
+        .then(async (ipfsresult)=> {
+          console.log(ipfsresult);
+          // this.router.navigateByUrl('/enrich');
+        })
+        .catch(error => {console.log("Adding file to IPFS failed");});
   }
   onFileChange(event) {
     if (event.target.files.length > 0) {
-      console.log("File got")
-      // console.log(event.target.files);
-      const file = event.target.files[0];
-      console.log(file);
-      let headers = new HttpHeaders({ 'Content-Disposition': 'attachment; filename=install.sh' });
-
-      this.http.post("http://172.17.62.244:8000/api/ipfs/addfile/", file, { headers: headers } ).toPromise()
-          .then(async (ipfsresult)=> {
-            console.log(ipfsresult);
-            // TODO: Put a redirect over here
-          }
-          )
-      // data= {
-      //   "$class": "org.jro.Add", roj
-      // }
-      // this.form.get('avatar').setValue(file);
+      this.selectedFile = event.target.files[0];
     }
   }
 
