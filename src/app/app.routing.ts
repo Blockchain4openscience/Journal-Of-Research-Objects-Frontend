@@ -83,10 +83,6 @@ export const routes: Routes = [
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
       },
       {
-        path: 'formme',
-        loadChildren: () => import('./jro/components/forms/forms.module').then(m => m.FormsCustomModule)
-      },
-      {
         path: 'add',
         loadChildren: () => import('./jro/components/add/add.module').then(m => m.AddModule)
       }, // Lazy load the components in AddModule when path is '/add'
