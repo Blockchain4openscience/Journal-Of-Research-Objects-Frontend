@@ -1,0 +1,21 @@
+// Here you can add other styles
+
+
+// Change the icon size of facebook/figshare/github icons that appear on main dashboard
+.brand-icon {    
+    i {
+      font-size: 4em;
+      color: #fff;
+    }
+}
+
+// This is to remove a icon which allowed to toggle the menus.
+.navbar-toggler-icon{
+  display: none;
+}
+
+// To override the GitHub repo card's header.
+.card-header{
+  padding: 0.5rem 1.25rem;
+}
+
