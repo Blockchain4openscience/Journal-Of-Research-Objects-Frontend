@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
   user: Object;
 
   constructor(
-    public router: Router,
-    private activatedRoute: ActivatedRoute,
+   		public router: Router,
+    	private activatedRoute: ActivatedRoute,
 		private location: Location,
 		private authService: AuthService,
 		private storageService: StorageService
@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
 			let code = params['code'];
 			if (typeof code !== 'undefined' && localStorage.getItem('isLoggedin') === null) {
 				let user = this.authService.auth(code).then(user => {
-					console.log("Login component, Printing user that i recieved:")
 					console.log(user)
 					this.user = user;
 					this.storageService.write('user', this.user);
