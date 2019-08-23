@@ -13,7 +13,7 @@ import { environment } from '../../../../../environments/environment';
 export class AllComponent implements OnInit {
   public user: Object;
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  rojId: string = 'hello';
+  rojId: string = '';
   isIdPrefilled: boolean = false;
 
   constructor(private storageService: StorageService,
