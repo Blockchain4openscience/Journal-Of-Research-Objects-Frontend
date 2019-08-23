@@ -29,17 +29,13 @@ export class GithubComponent implements OnInit {
     this.user = this.storageService.read<Object>('user');
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       let code = params['code'];
-      console.log(code);
+      
       if (typeof code !== 'undefined' && localStorage.getItem('githubRepos') === null) {
-        console.log('here');
         this.githubService.auth(code).then(async repos => { // Temporarily removed this.user['id']
-          console.log(code);
-          this.githubRepos = repos;
-          this.storageService.write('githubRepos', this.githubRepos);
-          console.log("Just Navigating");
-          //this.router.navigateByUrl('/base/github');
-          this.searching = false;
-          this.query = false;
+            this.githubRepos = repos;
+            this.storageService.write('githubRepos', this.githubRepos);
+            this.searching = false;
+            this.query = false;
         });
       }
       else {
@@ -48,7 +44,6 @@ export class GithubComponent implements OnInit {
       }
     });
   }
-
 
   claim(researchObject: any) {
     console.log(researchObject);
@@ -69,58 +64,22 @@ export class GithubComponent implements OnInit {
 
     let addrepo_headers = new HttpHeaders({'oricid': this.user['researcherId']});
 
-    this.http.post(environment.jroBackendUrl+"/api/github/addrepo/", data, { headers: addrepo_headers }).toPromise()
+    this.http.post(environment.jroBackendUrl + "/api/github/addrepo/", data, { headers: addrepo_headers }).toPromise()
       .then(async (ipfsresult) => {
         IPFShash = ipfsresult['hash'];
         console.log(IPFShash);
-
-        this.roService.claim(this.user['researcherId'], IPFShash, researchObject['html_url'])
-          .then(claimResult => {
-            researchObject['rojId'] = claimResult["rojId"];
-            researchObject['claimed'] = true;
-            this.storageService.write('githubRepos', this.githubRepos);
-          })
-          .catch(error => { console.log("Adding ROJ to blockchain failed.") });
-
-      }
-      )
-      .catch(error => {
+        researchObject['rojId'] = IPFShash;
+        researchObject['claimed'] = true;
+        this.storageService.write('githubRepos', this.githubRepos);
+      }).catch(error => {
         console.log("Adding to IPFS failed");
         IPFShash = "SAMPLE-INVALID-IPFSHASH"
       })
-
-
-    // this.roService.claim(this.user['researcherId'],IPFShash,researchObject['html_url'])
-    //         .then(claimResult => {
-    //           researchObject['claimed'] = true;
-    //           this.storageService.write('githubRepos', this.githubRepos);
-    //         })
-    //         .catch(error => {console.log("Adding ROJ to blockchain failed.")});      
-    // this.roService.exists(researchObject['researchObjId'])
-    // .then(data => {
-    //     console.log(data);
-    //     if(!data){
-    //       this.roService.create(ro)
-    //         .then(result => {
-    //           researchObject['claimed'] = true;
-    //           this.storageService.write('githubRepos', this.githubRepos);
-    //         });
-    //     }
-    //     else {
-    //       this.roService.claim(this.user['researcherId'], researchObject['researchObjId'])
-    //         .then(claimResult => {
-    //           researchObject['claimed'] = true;
-    //           this.storageService.write('githubRepos', this.githubRepos);
-    //         });
-    //     }       
-    // })
-    //   .catch(error => {console.log("error read if file exists")});      
   }
 
   enrich(researchObject: any) {
     if(researchObject['rojId']!=undefined){
       this.router.navigateByUrl('/enrich/all?rojId='+researchObject['rojId']);  
-  
     }
     else{
       this.router.navigateByUrl('/enrich/all');  
