@@ -40,6 +40,7 @@ export class GithubService {
 									// console.log("In the for loop");
 									// console.log(repos[i]);
 									repos[i]["isCollapsed"]=true;
+									repos[i]["rojId"] = undefined;
 									//let exist = await this.roService.exists(repos[i]['html_url']);
 									//console.log(exist);
 									// if (!exist) {

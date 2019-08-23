@@ -31,7 +31,7 @@
                 <button type="button" class="btn btn-primary" (click)="claim(repo)" [disabled]="repo.claimed">
                     {{repo.claimed ? "Claimed" : "Claim" }} </button>
                 
-                <button type="button" *ngIf="repo.claimed" class="btn btn-primary" (click)="claim(repo)">
+                <button type="button" *ngIf="repo.claimed" class="btn btn-primary" (click)="enrich(repo)">
                     Enrich </button>
 
             </div>

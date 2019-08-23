@@ -22,7 +22,8 @@ export class GithubComponent implements OnInit {
     private githubService: GithubService,
     private roService: RoService,
     private router: Router,
-    private http: HttpClient) { }
+    private http: HttpClient
+  ) { }
 
   ngOnInit() {
     this.user = this.storageService.read<Object>('user');
@@ -62,17 +63,20 @@ export class GithubComponent implements OnInit {
 
     // Add ipfs logic here
     let data = {
-      "githuburl": researchObject['html_url'] + ".git",
+      "zip_url": researchObject['html_url'] + "/zipball/master/",
       "reponame": researchObject['name']
     }
 
-    this.http.post(environment.jroBackendUrl+"/api/ipfs/", data).toPromise()
+    let addrepo_headers = new HttpHeaders({'oricid': this.user['researcherId']});
+
+    this.http.post(environment.jroBackendUrl+"/api/github/addrepo/", data, { headers: addrepo_headers }).toPromise()
       .then(async (ipfsresult) => {
         IPFShash = ipfsresult['hash'];
-        console.log("INSIDE POST");
         console.log(IPFShash);
+
         this.roService.claim(this.user['researcherId'], IPFShash, researchObject['html_url'])
           .then(claimResult => {
+            researchObject['rojId'] = claimResult["rojId"];
             researchObject['claimed'] = true;
             this.storageService.write('githubRepos', this.githubRepos);
           })
@@ -81,8 +85,7 @@ export class GithubComponent implements OnInit {
       }
       )
       .catch(error => {
-        console.log(error);
-        console.log("IPFS failed");
+        console.log("Adding to IPFS failed");
         IPFShash = "SAMPLE-INVALID-IPFSHASH"
       })
 
@@ -112,6 +115,16 @@ export class GithubComponent implements OnInit {
     //     }       
     // })
     //   .catch(error => {console.log("error read if file exists")});      
+  }
+
+  enrich(researchObject: any) {
+    if(researchObject['rojId']!=undefined){
+      this.router.navigateByUrl('/enrich/all?rojId='+researchObject['rojId']);  
+  
+    }
+    else{
+      this.router.navigateByUrl('/enrich/all');  
+    }
   }
 
   collapsed(event: any): void {
