@@ -20,4 +20,8 @@ export class StorageService {
 
       return null;
   }
+
+  clear(){ //Empties Local Storage
+    localStorage.clear();
+  }
 }
