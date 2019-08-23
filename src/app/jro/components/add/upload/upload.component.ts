@@ -29,7 +29,7 @@ export class UploadComponent implements OnInit {
     this.http.post(environment.jroBackendUrl+"/api/ipfs/addfile/", this.selectedFile, { headers: headers } ).toPromise()
         .then(async (ipfsresult)=> {
           console.log(ipfsresult);
-          // this.router.navigateByUrl('/enrich');
+          this.router.navigateByUrl('/enrich/all?rojId=' + ipfsresult['hash']);  
         })
         .catch(error => {console.log("Adding file to IPFS failed");});
   }
