@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  serviceUrl: 'http://localhost:5002',
+  serviceUrl: 'http://172.17.62.24:5002',
   redirectUrl: 'localhost:4200/login',
   // Orcid information
   orcidUrl: 'https://sandbox.orcid.org/oauth/token',
@@ -17,4 +17,6 @@ export const environment = {
   githubClientSecret: '1d815cf181387e599d81451d52952c86159230a1',
   githubApi: "https://github.com/login/oauth/access_token",
   githubUserApi: "https://api.github.com/user",
-};
+  jroBackendUrl: "http://172.17.62.24:8000",
+  composerUrl: "http://172.17.62.24:5002"
+};                                                                                                                                                             
