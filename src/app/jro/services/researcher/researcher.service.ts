@@ -8,7 +8,7 @@ import { environment } from '../../../../environments/environment';
 export class ResearcherService {
   
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  private researcherUrl = `${environment.serviceUrl}/api/Researcher/`;  // URL to web api
+  private researcherUrl = `${environment.composerUrl}/api/Researcher/`;  // URL to web api
 
   constructor(private http: HttpClient) { }
 

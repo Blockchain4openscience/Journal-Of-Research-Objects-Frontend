@@ -5,7 +5,6 @@
 
 export const environment = {
   production: false,
-  serviceUrl: 'http://172.17.62.24:5002',
   redirectUrl: 'localhost:4200/login',
   // Orcid information
   orcidUrl: 'https://sandbox.orcid.org/oauth/token',

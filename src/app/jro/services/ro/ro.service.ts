@@ -8,11 +8,11 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class RoService {
 	private headers = new HttpHeaders({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
-	private roUrl = `${environment.serviceUrl}/api/ROJ`;  // URL to web api
-	private claimUrl = `${environment.serviceUrl}/api/Add`;
-	//private createUrl = `${environment.serviceUrl}/api/Add`;
-	//private mineClaimedUrl = `${environment.serviceUrl}/api/queries/selectResearchObjectsByClaimerId?researcherId=`
-	//private mineCollectUrl = `${environment.serviceUrl}/api/queries/selectResearchObjByCollectorId?researcherId=`
+	private roUrl = `${environment.composerUrl}/api/ROJ`;  // URL to web api
+	private claimUrl = `${environment.composerUrl}/api/Add`;
+	//private createUrl = `${environment.composerUrl}/api/Add`;
+	//private mineClaimedUrl = `${environment.composerUrl}/api/queries/selectResearchObjectsByClaimerId?researcherId=`
+	//private mineCollectUrl = `${environment.composerUrl}/api/queries/selectResearchObjByCollectorId?researcherId=`
 	private mineClaimedRO: Object[] = [];
 	private mineCollectRO: Object[] = [];
 
